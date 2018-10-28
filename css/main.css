@@ -107,7 +107,7 @@ article:first-of-type{
 		font-size: 2.0rem;
 		padding: 3rem;
 		text-align: center;
-		transform: scale(1.2) translate(0, 60px);
+		transform: scale(1.1) translate(0, 60px);
 		transform-origin: center 0;
 		background: black;
 	}
@@ -364,7 +364,7 @@ padding: 0;}
 			pointer-events: all;
 		}
 		footer {
-			transform: scale(1.4) translate(0, 60px);
+			transform: scale(1.2) translate(0, 60px);
 			transform-origin: center 0;
 		}
 

@@ -83,6 +83,7 @@ article:first-of-type{
 	h3,h4 {
 		font-family: SkyhookMono,'Skyhook Mono', 'Lato', 'Helvetica Neue', sans-serif;
 		letter-spacing: -1px;
+		font-weight: 800;
 		font-size: 1.3em;
 		padding: 1rem 2rem;
 		text-shadow: 0px 0px 4px white;
@@ -165,24 +166,28 @@ article:first-of-type{
 	}
 	h2.center-title {
 		font-size: 6.4rem;
-		padding: 0;
+		padding: .4rem;
+		padding-right: .7rem;
 		line-height: .7em;
-		padding-top: .2em;
+		padding-top: .25em;
 		padding-bottom: 1rem;
 		margin-bottom: 1.2rem;
 		color: black;
+		text-align: center;
+		font-weight: 600;
 		background: white;
 		overflow: hidden;
 		display: inline-block;
-		text-shadow:
-		-1px -1px 0 #000,
-		1px -1px 0 #000,
-		-1px 1px 0 #000,
-		1px 1px 0 #000;
+		/* text-shadow: */
+		/* -1px -1px 0 #000, */
+		/* 1px -1px 0 #000, */
+		/* -1px 1px 0 #000, */
+		/* 1px 1px 0 #000; */
 	}
 	p.center-subtitle {
 		display: inline-block;
 		font-size: 2.6rem;
+		font-weight: 400;
 		margin: 0;
 	}
 	#main-logo-img {
@@ -237,7 +242,7 @@ article:first-of-type{
 		background: rgba(255,255,255,0.4);
 	}
 	h3,h4 {
-		text-shadow: 0px 0px 1px black;
+		/* text-shadow: 0px 0px 1px black; */
 
 	}
 	h2,h3,h4,.collides,nav li,h2.center-title {

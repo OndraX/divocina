@@ -18,7 +18,14 @@
 	   <!-- FONT
 		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 		<!-- <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"> -->
-		<script type="text/javascript" src="Skyhook_Mono.js"></script>
+		<script type="text/javascript">
+		//uncomment and change this to false if having trouble with WOFFs
+		//var woffEnabled = true;
+		//to place your webfonts in a custom directory 
+		//uncomment this and set it to where your webfonts are.
+		var customPath = "/static/webfonts";
+		</script>
+		<script type="text/javascript" src="static/Skyhook_Mono.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400&amp;subset=latin-ext" rel="stylesheet">
 
 		<link rel="stylesheet" href="static/css/main.css">
@@ -26,9 +33,9 @@
 
 		<!-- CSS
 	  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	  <link rel="stylesheet" href="css/normalize.css">
-	  <link rel="stylesheet" href="css/skeleton.css">
-	  <link rel="stylesheet" href="css/main.css">
+	  <link rel="stylesheet" href="static/css/normalize.css">
+	  <link rel="stylesheet" href="static/css/skeleton.css">
+	  <link rel="stylesheet" href="static/css/main.css">
 
 	  <!-- Favicon
 	   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

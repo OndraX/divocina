@@ -1,0 +1,445 @@
+
+/* vim: set foldmethod=marker foldmarker=homoioskedasticita,homoeroticismus:
+**/
+html {
+	font-size: 92.5%;
+}
+
+body {
+	font-family: 'Roboto Condensed',RobotoCondensed,'Lato',sans-serif;
+	font-weight: 200;
+	background: black;
+	color: white;
+	font-size: 2rem;
+	overflow-x: hidden;
+	min-height: 100%;
+}
+
+html,#billboard,#img-container {
+	min-height: 100%;
+	height: 100%;
+}
+#wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+article:first-of-type{
+	margin-top: 6rem;
+}
+
+/*
+ * NAVIGATION
+ */
+	nav {
+		width: 100%;
+		display: flex;
+	}
+	nav ul {
+		align-self: center;
+		margin: 0 auto;
+		text-align: center;
+	}
+	nav li {
+		display: inline-block;
+		margin: 0;
+		margin-bottom: 0.6rem;
+		font-size: 2.2rem;
+		font-weight: 300;
+		padding: 0.2rem 0;
+	}
+	nav li a {
+		padding: 0 5rem;
+	}
+
+	/* Menu sensible aesthetics */
+
+	nav  a {
+		color: inherit;
+		text-decoration: inherit;
+		transition: all .3s ease-in-out;
+		pointer-events: all;
+	}
+
+	nav a:hover {
+		color: white;
+		text-shadow: 0px 0px 4px white;
+	}
+
+
+	/*
+	 * TYPOGRAPHY
+	 */
+
+	p, li {
+		margin: 0px .6rem;
+		margin-bottom: .6rem;
+	}
+
+	h3,h4 {
+		font-family: SkyhookMono,'Skyhook Mono', 'Lato', 'Helvetica Neue', sans-serif;
+		letter-spacing: -1px;
+		font-size: 1.3em;
+		padding: 1rem 2rem;
+		text-shadow: 0px 0px 4px white;
+		cursor: default;
+	}
+	.collides {
+		padding: 1rem 2rem;
+	}
+	h4 {
+		font-size: 1.2em;
+	}
+	/*
+	 * MISC
+	 */
+
+	.colliding-image {
+		visibility: hidden;
+	}
+	footer {
+		border-top: 2px dashed;
+		margin:3rem 7rem;
+		font-size: 2.0rem;
+		padding: 3rem;
+		text-align: center;
+		transform: scale(1.2) translate(0, 60px);
+		transform-origin: center 0;
+		background: black;
+	}
+
+	.pre {
+		font-family: SkyhookMono,'Skyhook Mono', 'Lato', 'Helvetica Neue', sans-serif;
+	}
+
+	footer pre {
+		display: inline;
+		text-align: center;
+	}
+
+	#map {
+		height: 400px;
+		margin: .6rem 1rem;
+		background: red ;
+	}
+
+	ul {
+		margin: 0;
+	}
+
+	ul.no-list {
+		list-style: none;
+	}
+	ul.no-list li {
+		padding-left: 2em;
+	}
+
+	#cvs {
+		position: absolute;
+	}
+	/*
+	 * LAYOUT
+	 */
+	#billboard {
+		width: 100%;
+		height: 100%;
+		min-height: 100vh;
+		/* background: red; */
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	div.center-title__wrap {
+		margin: auto;
+		text-align: center;
+		align-self: center;
+		padding: 1.0rem 0;
+		flex: 1;
+		font-family: SkyhookMono,'Skyhook Mono', 'Lato', 'Helvetica Neue', sans-serif;
+	}
+	h2.center-title {
+		font-size: 6.4rem;
+		padding: 0;
+		line-height: .7em;
+		padding-top: .12em;
+		padding-bottom: 1rem;
+		margin-bottom: 1.2rem;
+		color: black;
+		background: white;
+		overflow: hidden;
+		display: inline-block;
+		text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+	}
+	p.center-subtitle {
+		display: inline-block;
+		font-size: 2.6rem;
+		margin: 0;
+	}
+	#main-logo-img {
+		width: 240px;
+		height: auto;
+		display: block;
+		margin: 0 auto;
+	}
+	article {
+		margin: 0rem;
+		margin-top: .5rem;
+		border-bottom: 2px solid;
+		pointer-events: all;
+	}
+
+	article:last-of-type {
+		border-bottom: none;
+	}
+
+	table {
+	float:right;
+	clear: none;
+		width: 90%;
+		margin: 0;
+	color: black;
+	margin-top: 3.6rem;
+	margin-top: 2rem;
+	}
+	tr {
+		border: none;
+	}
+	.collides,h3,h4 {
+		color: black;
+
+		pointer-events: all;
+	}
+	nav li {
+		pointer-events: all;
+		color: black;
+		background: white;
+		transition: all .2s ease-in-out;
+	}
+	nav li:hover {
+		color: white;
+		background: #aaaaaa;
+		background: rgba(255,255,255,0.6);
+	}
+
+	nav li:active {
+		color: white;
+		background: #aaaaaa;
+		background: rgba(255,255,255,0.4);
+	}
+	h3,h4 {
+		text-shadow: 0px 0px 1px black;
+
+	}
+	h2,h3,h4,.collides,nav li,h2.center-title {
+
+		background: rgba(255,255,255,0.9);
+	}
+*{
+	margin:0;
+padding: 0;}
+
+.container {
+	width: 100%;
+}
+/*
+ * RESPONSIVE
+ */
+	/* Larger than mobile */
+	@media (min-width: 400px) {}
+
+	/* Larger than phablet (also point when grid becomes active) */
+	@media (min-width: 550px) {
+
+		.container {
+			width: 90%;
+		}
+		article {
+			padding: 0 .6rem;
+
+
+	}
+
+	/* Larger than tablet */
+	@media (min-width: 750px) {
+		.container {
+			width: 75%;
+		}
+		article {
+			padding: 0 1.2rem;
+			margin:3rem initial;
+		article {
+			padding: 0 2rem;
+		}
+
+		html {
+			font-size: 72.5%;
+		}
+
+		p {
+			margin: 1rem 0;
+			padding-left: 1rem;
+		}
+
+		body {
+			font-size: 2rem;
+		}
+		h3 {
+			font-size: 1.6em;
+		}
+		h4 {
+			font-size: 1.4em;
+		}
+		h2.center-title {
+			pointr-events: all;
+			font-size: 8.4rem;
+		}
+		p.center-subtitle {
+			font-size: 3.2rem;
+		}
+		nav li {
+			font-size: 2.8rem;
+		}
+		.collides,h3,h4 {
+			color: black;
+			margin: 0;
+			margin-bottom: 7px;
+			/* background: red; */
+			pointer-events: all;
+		}
+		p.collides, li.collides {
+			margin: 0px .6rem;
+			margin-bottom: .6rem;
+		}
+		nav li {
+			pointer-events: all;
+			color: black;
+			background: white;
+			transition: all .2s ease-in-out;
+		}
+		nav li:hover {
+			color: white;
+			background: #aaaaaa;
+			background: rgba(255,255,255,0.6);
+		}
+
+		nav li:active {
+			color: white;
+			background: #aaaaaa;
+			background: rgba(255,255,255,0.4);
+		}
+		h3,h4 {
+			text-shadow: 0px 0px 1px black;
+
+		}
+		h2,h3,h4,.collides,nav li {
+
+		background: rgba(255,255,255,0.9);
+		}
+		*{
+			margin:0;
+			padding: 0;}
+	}
+
+	/* Larger than desktop */
+	@media (min-width: 1000px) {
+	table {
+		width: auto;
+		margin: 2rem;
+	}
+		.collides,h3,h4 {
+			color: black;
+			padding: 1rem 2rem;
+			margin-bottom: 7px;
+			/* background: red; */
+			pointer-events: all;
+		}
+		footer {
+			transform: scale(1.4) translate(0, 60px);
+			transform-origin: center 0;
+		}
+
+	}
+
+	/* Larger than Desktop HD */
+	@media (min-width: 1200px) {
+
+		h2,h3,h4,.collides,nav li {
+
+			background: rgba(255,255,255,0.9);
+		}
+
+		h2.center-title {
+			font-size: 8.4rem;
+		}
+		p.center-subtitle {
+			font-size: 3.3rem;
+		}
+	}
+
+	/*
+	 * PARALLAX
+	 */
+
+	#img-container,#parallax-wrap {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+		pointer-events: none;
+	}
+	#parallax-wrap {
+		position: relative;
+	}
+	#img-container {
+		position: absolute;
+		overflow: hidden;
+		/* overflow: hidden; */
+		/* border: 1px solid red; */
+	}
+	.image-layer {
+		position: absolute;
+		overflow: visible;
+		top: 0;
+		left: -60px;
+		width: 100%;
+		height: 100%;
+	}
+
+	.colliding-image {
+		visibility: hidden;
+	}
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+.social-icon {
+    width: 48px;
+    height: auto;
+    display: inline;
+    font-size: 1.3em;
+	margin: 25px;
+	padding: 0;
+	margin-bottom: 0;
+	margin-right: 0;
+    position: relative;
+}
+
+.social-icon img {
+    display: inline;
+    max-width: 32px;
+    height: auto;
+
+}

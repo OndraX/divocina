@@ -1,0 +1,61 @@
+
+
+if( typeof require == 'undefined'){
+	alert('require.js needed for the functioning of this script');
+}else{
+	require(['js/voronoi/rhill-voronoi-core.min.js']);
+	var _ = require('https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js');
+
+	var initCanvas = function(rootElem, extra = {}){
+		//TODO: set canvas to inited after first init, turning this to getter
+		var canvas = document.createElement('canvas'),
+			context = canvas.getContext('2d');
+		rootElem.appendChild(canvas);
+		if(_.has(extra,'fillWindow')){ //TODO: implement robustly
+			if(extra.fillWindow !== false && extra.fillWindow !== 'false'){
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight
+			}
+		}
+		if(_.has(extra,'resizeHook')){ //TODO: implement robustly
+			if(extra.autoResize !== false && extra.autoResize !== 'false'){
+				window.addEventListener('resize',extra.resizeHook.bind(canvas,context),false);
+			}
+		}
+		if(_.has(extra,'autoResize'){ //TODO: implement robustly
+				if(extra.autoResize !== false && extra.autoResize !== 'false'){
+				var w,h;
+				if( extra.autoResize.constructor == Array){
+				w = extra.autoRezie[0];
+				h = extra.autoRezie[1];
+				}
+				else if(extra.autoResize !== null && typeof extra.autoResize === 'object'){
+				w = extra.autoRezie.w;
+				h = extra.autoRezie.h;
+				}
+
+				window.addEventListener('resize',function(canvasElem,widthMultiplier,heightMultiplier){
+						canvasElem.width =  widthMultiplier/100*window.innerWidth;
+						canvasElem.height = heightMultiplier/100*window.innerHeight
+						}.bind(canvas,w,h));
+				}
+				}
+				}
+				return {canvas: canvas, context: context};
+				}
+var tesselate = function(element){
+	var canv = initCanvas(element,{
+autoResize:[1,1],
+resizeHook: function(canvas.context){
+context.strokeRect(0,0,canvas.width-1,canvas.height-1);
+});
+var canvElem = canv.elem;
+var ctx = canv.context;
+
+
+
+
+}
+}
+
+

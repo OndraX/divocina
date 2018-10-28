@@ -1,0 +1,25 @@
+
+{
+  "name": "symposion2018",
+  "version": "0.1.0",
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.3.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "grunt": "~1.0.3",
+    "grunt-autoprefixer": "~3.0.4",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-sass": "~1.0.0",
+    "grunt-contrib-uglify": "^3.4.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-sass": "^3.0.1",
+    "node-sass": "^4.9.3",
+    "scsslint": "0.0.3"
+  },
+  "dependencies": {}
+}

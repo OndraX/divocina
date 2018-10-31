@@ -1,6 +1,10 @@
 
 /* vim: set foldmethod=marker foldmarker=homoioskedasticita,homoeroticismus:
 **/
+a, p, pre, header, h1, h2, h3, h4, h5, h6, table, tbody, thead, article, br, div, footer{
+	margin: 0;
+	padding: 0;
+}
 html {
 	font-size: 92.5%;
 }
@@ -104,11 +108,12 @@ article:first-of-type{
 	}
 	footer {
 		border-top: 2px dashed;
-		margin:3rem 7rem;
-		font-size: 2.0rem;
+		margin: 0rem 7rem;
+		margin-top: 3rem;
+		font-size: 1.2rem;
 		padding: 3rem;
 		text-align: center;
-		transform: scale(1.1) translate(0, 60px);
+		transform: scale(1.9) translate(0, 60px);
 		transform-origin: center 0;
 		background: black;
 	}
@@ -403,13 +408,14 @@ padding: 0;}
 		width: 100%;
 		height: 100%;
 		z-index: 10;
-		pointer-events: none;
+		/* pointer-events: none; */
 	}
 	#parallax-wrap {
 		position: relative;
 	}
 	#img-container {
 		position: absolute;
+		position: fixed;
 		overflow: hidden;
 		/* overflow: hidden; */
 		/* border: 1px solid red; */

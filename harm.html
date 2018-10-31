@@ -1,201 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Harmonogarmono jsono</title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title>Harmonogarmono jsono</title>
+	</head>
 
-<div id="harmonogram"></div>
-<body>
-	<script>
-		function createDOM(obj,text,properties,parent){
-    
-    var o= document.createElement(obj);
-    
-    for (var name in properties){
-        //TODO: traverse tree if object(css)
-        if(properties.hasOwnProperty(name)){
-        o.setAttribute(name,properties[name]);
-        }   
-    }
-    
-    o.innerHTML = text;
-    
-    parent.appendChild(o);
-    return o;
-}
+	<div id="harmonogram"></div>
+	<body>
+		<script>
+			const daysEnum = ['Čtvrtek','Pátek','Sobota'];
+			const classesEnum = ['AA','AB','AC','BA','BB','BC','all'];
+			const timesEnum = ['10:00','12:00','13:00',
+			'15:00','17:00','18:30','18:45','19:30',
+				'20:15','21:00'];
+	function createDOM(obj,text,properties,parent){
 
-String.prototype.toBactrianCamelCase = function(str){//capitalise even the beginning -- convert name to ref
-  return this.split(' ').map(function(word,index){
-    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-  }).join('');
-}
-String.prototype.titlify = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-}
+		var o= document.createElement(obj);
 
-var build = function(data,parent){
-var tableCount = 0;
-    data.forEach(function(day){
-        createDOM('h2',day['den'],{class:'headingClass',},parent);
-        var table = createDOM('table','',{'class':'table-harm u-full-width u-max-full-width standard','id':('table_' + String(tableCount++))},parent);
-        var th = createDOM('tr','',{'class':'thClass','id':'thId'},createDOM('thead','',{'class':'theadClass','id':'tableHeadId'},table));
-        
-        for(var i 	in day['header']){
-            createDOM('th',day['header'][i],{'class':'tableClass','id':'tableHeadId'},th);
-        }
-			console.log("day",day);
-        day.list.forEach(function(hour){
-			console.log("HOUR",hour);
-            
-            var row = createDOM('tr','',{'class':'rowClass'},table);
-            
-            createDOM('td',hour['od'],{'class':'harm_cas',},row);
-                var props = {'class':'cellClass','id':Math.floor(Math.random()*1000000)};
-               var item = createDOM('td','',props,row);  
-                var nazev = '<strong> ';
-                if(prednaska['nazev'].length>0){
-                    nazev += ':<br>' + '</strong> ' + prednaska['nazev'].titlify();
-                }
-               var text = '<strong>' + prednaska['jmeno']  + nazev;
-               //pra sááár na
+		for (var name in properties){
+			//TODO: traverse tree if object(css)
+			if(properties.hasOwnProperty(name)){
+				o.setAttribute(name,properties[name]);
+			}   
+		}
 
-               if(!(prednaska['isEmpty'] )  && ((typeof doLinks === 'undefined') | doLinks)){
-                   var link = createDOM('span',text,{'class':'pointable default'/*,'href':'#'+prednaska['ref']*/},item);
-                   var pred = function(prednaska){
+		o.innerHTML = text;
 
-                       var popup = vex.open({
-                       content: '',
-                       buttons: null,
+		parent.appendChild(o);
+		return o;
+	}
 
-                        });
-						var nazev;
-						if(prednaska.hasOwnProperty['nazevLong']){
-						nazev = prednaska['nazevLong'].titlify()}else{
-							nazev = prednaska['nazev'].titlify();
-						}
-                           createDOM('h2',nazev,{class:'popupHeading'},popup.contentEl);  
-                          if(prednaska['anotace'].length > 0)
-                                createDOM('p',prednaska['anotace'],{},popup.contentEl);
-                       var displayJmeno = prednaska['jmeno'];
-                       if(prednaska.hasOwnProperty('jmenoTituly'))
-{
-    if(prednaska['jmenoTituly'].length > prednaska['jmeno'].length){
-        displayJmeno = prednaska['jmenoTituly'];
-    }
-}                           createDOM('h2',displayJmeno,{class:'popupHeading'},popup.contentEl);
-                           createDOM('p',prednaska['medailon'],{},popup.contentEl);
-                       if(prednaska.hasOwnProperty("lide")){
+	String.prototype.toBactrianCamelCase = function(str){//capitalise even the beginning -- convert name to ref
+		return this.split(' ').map(function(word,index){
+			return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+		}).join('');
+	}
+	String.prototype.titlify = function() {
+		return this.charAt(0).toUpperCase() + this.slice(1);
+					var pred = function(prednaska){
+	}
 
-                           prednaska["lide"].forEach(function(e){
+				function build(data,parent){
+					console.log(data);
+				}
+	// var build = function(data,parent){
+	// 	var tableCount = 0;
+	// 	// data.forEach(function(day){
+	// 		createDOM('h2',day['den'],{class:'headingClass',},parent);
+	// 		var table = createDOM('table','',{'class':'table-harm u-full-width u-max-full-width standard','id':('table_' + String(tableCount++))},parent);
+	// 		var th = createDOM('tr','',{'class':'thClass','id':'thId'},createDOM('thead','',{'class':'theadClass','id':'tableHeadId'},table));
+    //
+	// 		for(var i 	in day['header']){
+	// 			// createDOM('th',day['header'][i],{'class':'tableClass','id':'tableHeadId'},th);
+	// 		}
+	// 		for(let hour in day.list){
+	// 			console.log("HOUR",day.list[hour]);
+    //
+	// 			var row = createDOM('tr','',{'class':'rowClass'},table);
+    //
+	// 			createDOM('td',hour['od'],{'class':'harm_cas',},row);
+	// 			var props = {'class':'cellClass','id':Math.floor(Math.random()*1000000)};
+	// 			var item = createDOM('td','',props,row);  
+	// 			var nazev = '<strong> ';
+	// 			if(hour['jmeno'].length>0){
+	// 				nazev += ':<br>' + '</strong> ' + prednaska['nazev'].titlify();
+	// 			}
+	// 			var text = '<strong>' + prednaska['jmeno']  + nazev;
+	// 			//pra sááár na
+    //
+	// 			if(!(prednaska['isEmpty'] )  && ((typeof doLinks === 'undefined') | doLinks)){
+	// 				var link = createDOM('span',text,{'class':'pointable default'#<{(|,'href':'#'+prednaska['ref']|)}>#},item);
+	// 				var pred = function(prednaska){
+    //
+	// 					var popup = vex.open({
+	// 						content: '',
+	// 						buttons: null,
+    //
+	// 					});
+	// 					var nazev;
+	// 					if(prednaska.hasOwnProperty['nazevLong']){
+	// 						nazev = prednaska['nazevLong'].titlify()}else{
+	// 							nazev = prednaska['nazev'].titlify();
+	// 						}
+	// 					createDOM('h2',nazev,{class:'popupHeading'},popup.contentEl);  
+	// 					if(prednaska['anotace'].length > 0)
+	// 						createDOM('p',prednaska['anotace'],{},popup.contentEl);
+	// 					var displayJmeno = prednaska['jmeno'];
+	// 					if(prednaska.hasOwnProperty('jmenoTituly'))
+	// 					{
+	// 						if(prednaska['jmenoTituly'].length > prednaska['jmeno'].length){
+	// 							displayJmeno = prednaska['jmenoTituly'];
+	// 						}
+	// 					}                           createDOM('h2',displayJmeno,{class:'popupHeading'},popup.contentEl);
+	// 					createDOM('p',prednaska['medailon'],{},popup.contentEl);
+	// 					if(prednaska.hasOwnProperty("lide")){
+    //
+	// 						prednaska["lide"].forEach(function(e){
+    //
+	// 							if(typeof e['anotace'] !== 'undefined'){createDOM('p',e['anotace'],{},popup.contentEl);
+	// 							}
+	// 							createDOM('h2',(typeof e['jmenoTituly'] !== 'undefined')?e['jmenoTituly']:e['jmeno'],{class:'popupHeading'},popup.contentEl);
+	// 							if(typeof e['medailon'] !== 'undefined'){createDOM('p',e['medailon'],{},popup.contentEl);
+	// 							}
+    //
+	// 						})
+    //
+	// 					}
+    //
+	// 					if(history.pushState) {
+	// 						history.pushState(null, null, '#'+ prednaska['ref']);
+	// 					}
+	// 					else {
+	// 						location.hash = '#' + prednaska['ref'];
+	// 					}
+    //
+	// 				};
+    //
+	// 				link.addEventListener('click',function(e){e.preventDefault(); pred(prednaska)},false);
+    //
+    //
+    //
+    //
+	// 			}else{
+	// 				createDOM('span',text,{'class':'textClass default'},item); 
+	// 			}
+    //
+	// 		}
+	// 	});
 
-                               if(typeof e['anotace'] !== 'undefined'){createDOM('p',e['anotace'],{},popup.contentEl);
-                                                                      }
-                           createDOM('h2',(typeof e['jmenoTituly'] !== 'undefined')?e['jmenoTituly']:e['jmeno'],{class:'popupHeading'},popup.contentEl);
-                           if(typeof e['medailon'] !== 'undefined'){createDOM('p',e['medailon'],{},popup.contentEl);
-                                                                      }
+	}
+	function initHarm(content,harmonogram){
+		console.log(content);
+		//BEGIN
+		content.forEach(function(day){
+			console.log("DAY:",day);
+			for (var hour in day.list) {
+			if (day.hasOwnProperty(hour)) {
+			var p = day.list[hour];
+			console.log("ITEM", p);
+				}
+			}
+		});
+		//END
+		// build(content,harmonogram);
 
-                           })
+	}
 
-                       }
+		</script>
+		<script>
+			var harm = document.querySelector('#harmonogram');
 
-                       if(history.pushState) {
-                           history.pushState(null, null, '#'+ prednaska['ref']);
-                       }
-                       else {
-                           location.hash = '#' + prednaska['ref'];
-                       }
+const ROOTURL='/static/';
+const Http = new XMLHttpRequest();
 
-                    };
-
-                   link.addEventListener('click',function(e){e.preventDefault(); pred(prednaska)},false);
-
-
-
-
-               }else{
-                   createDOM('span',text,{'class':'textClass default'},item); 
-               }
-            });
-            
-        })
-        
-}
-
-function initHarm(content,harmonogram){
-	console.log(content);
-	build(content,harmonogram);
-
-}
-
-	</script>
-	<script>
-		var harm = document.querySelector('#harmonogram');
-		
-		const ROOTURL='/static/';
-		const Http = new XMLHttpRequest();
-	
-		const url = ROOTURL+'sampleHarm.json';
-		Http.open("GET", url);
-		Http.send();
-		Http.onreadystatechange=function(e){
-		if (Http.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
-			if (Http.status == 200) {
+const url = ROOTURL+'sampleHarm.json';
+Http.open("GET", url);
+Http.send();
+Http.onreadystatechange=function(e){
+	if (Http.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+		if (Http.status == 200) {
 			var harmData = JSON.parse(Http.responseText);
-				const daysEnum = ['Čtvrtek','Pátek','Sobota'];
-				const classesEnum = ['AA','AB','AC','BA','BB','BC','all'];
-				const timesEnum = ['10:00','12:00','13:00',
-					'15:00','17:00','18:30','18:45','19:30',
-					'20:15','21:00'];
 
-					// var hiddenElement = document.createElement('a');
-					// hiddenElement.href = 'data:attachment/text,' + encodeURI(JSON.stringify(harmData));
-					// hiddenElement.target = '_blank';
-					// hiddenElement.download = 'sampleHarm.json';
-					// hiddenElement.click();
+			// var hiddenElement = document.createElement('a');
+			// hiddenElement.href = 'data:attachment/text,' + encodeURI(JSON.stringify(harmData));
+			// hiddenElement.target = '_blank';
+			// hiddenElement.download = 'sampleHarm.json';
+			// hiddenElement.click();
 
-				harmData = harmData.rows;
-				arrsByDay = [],finalArr = [];
-				harmData.forEach(function(row){
-					var ind = daysEnum.indexOf(row.den);
-					if (typeof arrsByDay[ind] == 'undefined'){
-						arrsByDay[ind] = [];
-					}
-					arrsByDay[ind].push(row);
-				});
-				arrsByDay.forEach(function(row,x){
-					row.forEach(function(cell){
-				var dayInd = timesEnum.indexOf(cell.od);
-						if (typeof finalArr[x] == 'undefined'){
-							finalArr[x] = {ind:x,list:{}};
+			harmData = harmData.rows;
+			arrsByDay = [],finalArr = [];
+			harmData.forEach(function(row){
+				var ind = daysEnum.indexOf(row.den);
+				if (typeof arrsByDay[ind] == 'undefined'){
+					arrsByDay[ind] = [];
+				}
+				arrsByDay[ind].push(row);
+			});
+			arrsByDay.forEach(function(row,x){
+				row.forEach(function(cell){
+					var dayInd = timesEnum.indexOf(cell.od);
+					if (typeof finalArr[x] == 'undefined'){
+						finalArr[x] = {ind:x,list:{}};
 					}
 					if (typeof finalArr[x].list[dayInd]== 'undefined'){
 						finalArr[x].list[dayInd] = [];
 					}
 					finalArr[x].list[dayInd].push(cell);
-					});
-					// row.sort(function(a,b){
-					// 	return(timesEnum.indexOf(a.od)-timesEnum.indexOf(b.od));
-					// });
 				});
-				console.log(finalArr);
-				var initPolys = function(srcs,drawCallback){
-				  window.len = srcs.length;//TODO: check cross-browser globality
-				  srcs.forEach(function(e){
+				// row.sort(function(a,b){
+				// 	return(timesEnum.indexOf(a.od)-timesEnum.indexOf(b.od));
+				// });
+			});
+			console.log(finalArr);
+			var initPolys = function(srcs,drawCallback){
+				window.len = srcs.length;//TODO: check cross-browser globality
+				srcs.forEach(function(e){
 					var img = asyncImageOutline(e,MINALPHA,MAXSIZE,function(promisedPoints,passedSrc,dims){handleImages(passedSrc,promisedPoints,
-					  dims,actOnList.bind(this,imgs,drawCallback));});
-				  });
-				}
-				initHarm(finalArr,harm);
+						dims,actOnList.bind(this,imgs,drawCallback));});
+				});
 			}
-			else if (Http.Http == 400) {
-			   alert('There was an error 400');
-			}
-			else {
-				alert('something else other than 200 was returned');
-			}
-	 }
-		}	
-	</script>
-</body>
+			initHarm(finalArr,harm);
+		}
+		else if (Http.Http == 400) {
+			alert('There was an error 400');
+		}
+		else {
+			alert('something else other than 200 was returned');
+		}
+	}
+}	
+		</script>
+	</body>
 </html>

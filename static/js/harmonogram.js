@@ -226,7 +226,7 @@ var makeHarmRequest = function(url,element){
 
                 };
 
-                link.addEventListener('click',function(e){e.preventDefault(); pred(cellObject)},false);
+                // link.addEventListener('click',function(e){e.preventDefault(); pred(cellObject)},false);
 
 
 

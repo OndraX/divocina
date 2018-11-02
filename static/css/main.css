@@ -60,7 +60,7 @@ nav ul {
 	text-align: center;
 }
 nav li {
-	display: inline-block;
+	display: block;
 	margin: 0;
 	margin-bottom: 0.6rem;
 	font-size: 2.2rem;
@@ -118,7 +118,7 @@ h4 {
 	border-left: 3px solid orange;
 	padding-left: 4px;
 	margin-left: 3px;
-	margin-bottom: 4px;
+	margin-bottom: 6px;
 }
 
 .colliding-image {
@@ -300,6 +300,9 @@ padding: 0;}
 
 /* Larger than tablet */
 @media (min-width: 750px) {
+	nav li {
+		display: inline-block;
+	}
 	.container {
 		width: 85%;
 	}
@@ -540,12 +543,13 @@ a {
 
 @media (max-width: 750px){
 
-	#harmonogram-wrap{
+	h3{
 		/* overflow-x: scroll; */
-		margin-top: 1rem;
+		margin-bottom: 1rem;
 	}
 .table-harm__subheading{
 margin: 0;
+padding-top: 0.4rem !important;
 padding: 0;
 }
 }

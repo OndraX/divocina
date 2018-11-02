@@ -108,10 +108,10 @@ var makeHarmRequest = function(url,element){
         initHarm(dataToHarm(rawData),element);
       }
       else if (Http.Http == 400) {
-        alert('There was an error 400');
+        // alert('There was an error 400');
       }
       else {
-        alert('something else other than 200 was returned');
+        // alert('something else other than 200 was returned');
       }
     }
   }	

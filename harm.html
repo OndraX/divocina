@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Harmonogarmono jsono</title>
+		<link rel="stylesheet" href="static/css/vex.css">
+	</head>
+
+	<div id="harmonogram"></div>
+	<body>
+		<script src="static/js/vex.combined.min.js"></script>
+		<script src="static/js/harmonogram.js"></script>
+		<script>
+			var harm = document.querySelector('#harmonogram');
+
+// const ROOTURL='/static/';
+const ROOTURL='http://magnusi.tech:8000/';
+// const url = ROOTURL+'sampleHarm.json';
+const addr = ROOTURL+'harmonogram';
+makeHarmRequest(addr);
+		</script>
+	</body>
+</html>

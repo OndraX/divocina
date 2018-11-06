@@ -56,7 +56,7 @@
 		  <canvas id = "cvs" ></canvas>
 		  </div>
 		  <div id="parallax-wrap">
-<div id="wrap" data-depth="0.18">
+<div id="wrap" data-depth="0.09">
 			  <div id="billboard">
 
 				  <div class="center-title__wrap">
@@ -201,7 +201,7 @@ function documentSize(wrapper){
 			last = pCanv[pCanv.length-1];
 			// container.insertBefore(last,contentWrap);
 			container.appendChild(last);
-			last.setAttribute('data-depth', 0.2+(1/4*i/LAYERS));
+			last.setAttribute('data-depth', 0.12-(1/12*i/LAYERS));
 			last.classList.add('image-layer');
 
 		}
@@ -476,27 +476,17 @@ resizeCollisionHook(data.polys);
 	<script src = "static/js/gmaps.js"></script>
 	<script src="static/js/parallax/parallax.js"></script>
 	<script>
+		var parallaxWrap = document.querySelector('#parallax-wrap');
 		var settings = {
 						frictionX: 0.5,
 						frictionY: 0.5,
 						invertX: true,
 						invertY: true,
 						scalarY: 3,
+						inputElement: parallaxWrap
 					};
-		var parallaxWrap = document.querySelector('#parallax-wrap');
 		var parallaxInstance = new Parallax(container, settings);
 		var parallaxForBody = new Parallax(parallaxWrap, settings);
-		// Make anchors smooth scroll
-		// var anchors = document.getElementsByTagName('a'); // Make all local links smooth scrolling
- 		// for(var i = 0, n = anchors.length; i<n; i++){
-		// 	if( location.hostname == anchors[i].hostname || !anchors[i].hostname.length ) {
-		// 		anchors[i].addEventListener('click',function(clickEv){
-		// 			if(typeof scrollTo !== 'undefined')
-		// 				clickEv.preventDefault();
-		// 			scrollTo(document.querySelector(this.hash).offsetTop,null,200);	
-		// 		});
-		// 	}
-		// }
 	</script>
 	<script src="static/js/vex.combined.min.js"></script>
 	<script src="static/js/harmonogram.js"></script>

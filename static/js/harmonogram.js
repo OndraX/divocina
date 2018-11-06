@@ -5,6 +5,7 @@ const timesByDayEnum = [['18:45','19:30',
   '20:15','21:00'],['10:00','12:00','13:00',
 '15:00','17:00','20:00'],['10:00','12:00','13:00',
   '15:00','17:00','20:00']];
+vex.defaultOptions.className = 'vex-theme-wireframe';
 function createDOM(obj,text,properties,parent){
 
   var o= document.createElement(obj);
@@ -40,10 +41,11 @@ var clipStringToLength = function(str, length,spaceBuffer){
       return str.substring(0,firstSpaceAfter) + ' …';
     }
   var firstSpaceBefore = str.substring(0,length).lastIndexOf(' ');
-    // if (firstSpaceBefore > length - spaceBuffer && firstSpaceBefore > 4){
-  //   // return "HITS";
-    // return str.substring(0,firstSpaceBefore) + ' …';
-  // }
+
+    if (firstSpaceBefore > length - spaceBuffer && firstSpaceBefore > 4){
+    // return "HITS";
+    return str.substring(0,firstSpaceBefore) + ' …';
+  }
   // return str.substring(0,firstSpaceBefore)+"0"+str.substring(firstSpaceBefore,firstSpaceAfter)+"0"+str.substring(firstSpaceAfter,str.length);
   return str;
   
@@ -104,7 +106,6 @@ var makeHarmRequest = function(url,element){
     if (Http.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
       if (Http.status == 200) {
         var rawData = JSON.parse(Http.responseText);
-
         initHarm(dataToHarm(rawData),element);
       }
       else if (Http.Http == 400) {
@@ -138,7 +139,6 @@ var makeHarmRequest = function(url,element){
 
       timesByDayEnum[dayNum].forEach(function(hourRow,hourNum){
 
-
         var row = createDOM('tr','',{'class':'trClass','id':'trId'},table);
         createDOM('span',hourRow,{},createDOM('td','',{'class':'tdClass first-coll'},row));
         if(typeof data[dayNum] !== 'undefined'){
@@ -159,11 +159,12 @@ var makeHarmRequest = function(url,element){
                   }
                 continue;
               }
-              var text = clipStringToLength(cellObject.prednasejici, 120, 20);
-              if(cellObject.jmeno != 'O'){
+              var text = '<strong>'+clipStringToLength(cellObject.prednasejici, 120, 20).replace(/^\s+|\s+$/g,'');
                 if(cellObject.jmeno.length > 4){
-                text+=': '+ clipStringToLength(cellObject.jmeno,34,6);
+                text+=':</strong> '+ clipStringToLength(cellObject.jmeno,34,6).replace(/^\s+|\s+$/g,'');
                 }
+              else{
+                text+='</strong>';
               }
               // var text = cellObject.prednasejici + ':<br>' + cellObject.jmeno;
               var item = createDOM('td','',params,row);
@@ -175,7 +176,6 @@ var makeHarmRequest = function(url,element){
                 var link = createDOM('span',text,{'class':'cursor-default default'},item);
                 // item.classList.add('pointable');
                 var pred = function(cellObject){
-                  return;
 
                   // alert("PREDNASKA FUNC CALLED");
 
@@ -226,7 +226,7 @@ var makeHarmRequest = function(url,element){
 
                 };
 
-                // link.addEventListener('click',function(e){e.preventDefault(); pred(cellObject)},false);
+                item.addEventListener('click',function(e){ e.preventDefault(); pred(this)}.bind(cellObject),false);
 
 
 

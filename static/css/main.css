@@ -485,7 +485,10 @@ a {
 }
 .table-harm{
 	table-layout:fixed;
-	word-break: break-word;
+	-webkit-hyphens: auto;
+	  -ms-hyphens: auto;
+	    hyphens: auto;
+	/* word-break: break-word; */
 	float: right;
 	clear: right;
 	/* word-break: break-all; */
@@ -494,7 +497,7 @@ a {
 	margin: 0;
 	padding: 0;
 	background: transparent;
-	border-spacing: 3px;
+	border-spacing: 2px;
 	border-collapse: separate;
 }
 .table-harm td,  .table-harm__subheading{

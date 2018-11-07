@@ -1,15 +1,13 @@
 const daysEnum = ['Čtvrtek','Pátek','Sobota'];
 const daysSansLocale = ['ctvrtek','patek','sobota'];
-const classesEnum = ['Aula','USV','Sborovna','P2.3','P2.2','P2.1'];
-const timesByDayEnum = [['18:45','19:00','19:30',
-  '20:15','21:00'],['10:00','12:00','13:00',
-'15:00','17:00','20:00'],['10:00','12:00','13:00',
-  '15:00','17:00','20:00']];
+const classesByDayEnum = [['Aula','P2.1'],['Aula','USV','Sborovna','P2.3','P2.2','P2.1'],['Aula','USV','Sborovna','P2.3','P2.2','P2.1']];
+const timesByDayEnum = [['18:45','19:00','19:30','20:15','21:00'],
+  ['10:00','12:00','13:00','15:00','17:00','20:00'],
+  ['10:00','12:00','13:00','15:00','17:00','20:00']];
 vex.defaultOptions.className = 'vex-theme-wireframe';
 function createDOM(obj,text,properties,parent){
 
   var o= document.createElement(obj);
-
   for (var name in properties){
     //TODO: traverse tree if object(css)
     if(properties.hasOwnProperty(name)){
@@ -63,11 +61,11 @@ function build(data,parent){
 }
 
 var dataToHarm = function(data){
-// var hiddenElement = document.createElement('a');
-// hiddenElement.href = 'data:attachment/text,' + encodeURI(JSON.stringify(data));
-// hiddenElement.target = '_blank';
-// hiddenElement.download = 'harm.json';
-// hiddenElement.click();
+var hiddenElement = document.createElement('a');
+hiddenElement.href = 'data:attachment/text,' + encodeURI(JSON.stringify(data));
+hiddenElement.target = '_blank';
+hiddenElement.download = 'harm.json';
+hiddenElement.click();
 
   arrsByDay = [],finalArr = [];
   daysSansLocale.forEach(function(day,ind){
@@ -98,6 +96,8 @@ var dataToHarm = function(data){
   return finalArr;
 }
 
+var backupUrl = 'static/backup.json';
+
 var makeHarmRequest = function(url,element){
   const Http = new XMLHttpRequest();
   Http.open("GET", url);
@@ -112,7 +112,9 @@ var makeHarmRequest = function(url,element){
         // alert('There was an error 400');
       }
       else {
-        // alert('something else other than 200 was returned');
+        if (url !== backupUrl){
+          makeHarmRequest.call(this,backupUrl,element);
+        }
       }
     }
   }	
@@ -133,7 +135,7 @@ var makeHarmRequest = function(url,element){
       var th = createDOM('tr','',{'class':'thClass'},createDOM('thead','',{'class':'theadClass','id':'tableHeadId'},table));
 
       createDOM('td','',{'class':'tableHeaderDataClass first-row first-coll'},th);
-      classesEnum.forEach(function(classroom){
+      classesByDayEnum[dayNum].forEach(function(classroom){
         createDOM('td',classroom,{'class':'tableHeaderDataClass first-row'},th);
       });
 
@@ -145,13 +147,20 @@ var makeHarmRequest = function(url,element){
           var listByHour = data[dayNum].list[hourNum];
           if(typeof listByHour !== 'undefined'){
             listByHour.sort(function(a,b){
-              return (classesEnum.indexOf(a.trida) - classesEnum.indexOf(b.trida));
+              return (classesByDayEnum[dayNum].indexOf(a.trida) - classesByDayEnum[dayNum].indexOf(b.trida));
             });
+            console.log("LBH",listByHour);
             var prev = null;
             for(hour in listByHour){
               var cellObject = listByHour[hour];
               var params = {'class':'tdClass','colspan':0};
-              if(cellObject.prednasejici == '0'){
+              var same = false;
+              if(prev !== null){
+                if(cellObject.prednasejici == prev.prednasejici)
+                  same = true;
+                
+              }
+              if(cellObject.prednasejici == '0' || same){
                 if(prev !== null){
                   prev.setAttribute('colspan',Math.min(listByHour.length,parseInt(prev.getAttribute('colspan'))+1 | 1));
                 }else{
@@ -173,17 +182,12 @@ var makeHarmRequest = function(url,element){
               const doLinks = true;
 
               if(doLinks){
-                var link = createDOM('span',text,{'class':'cursor-default default'},item);
+                var link = createDOM('span',text,{'class':'default'},item);
                 // item.classList.add('pointable');
                 var pred = function(cellObject){
 
                   // alert("PREDNASKA FUNC CALLED");
 
-                  var popup = vex.open({
-                    content: '',
-                    buttons: null,
-
-                  });
                   var nazev;
                   if(cellObject.hasOwnProperty('jmeno-dlouhe')){ //TODO: check if that not 0
                     nazev = cellObject['jmeno-dlouhe'].titlify()}else{
@@ -192,16 +196,23 @@ var makeHarmRequest = function(url,element){
                       else
                         nazev = "";
                     }
-                  createDOM('h2',nazev,{class:'popupHeading'},popup.contentEl);  
-                  if(cellObject['anotace'].length > 0)
-                    createDOM('p',cellObject['anotace'],{},popup.contentEl);
+                    if((cellObject['anotace'].length < 10 || cellObject['anotace'] == '0') && (cellObject['medailon'] == '0' || cellObject['medailon'].length < 10))
+                      return;
+                    var popup = vex.open({
+                      content: '',
+                      buttons: null,
+
+                    });
                   var displayJmeno = cellObject['prednasejici'];
                   if(cellObject.hasOwnProperty('prednasejici-tituly')) //  TODO: check if that not 0
                   {
                     if(cellObject['prednasejici-tituly'].length > cellObject['prednasejici'].length){
                       displayJmeno = cellObject['prednasejici-tituly'];
                     }
-                  }						   createDOM('h2',displayJmeno,{class:'popupHeading'},popup.contentEl);
+                  }
+                  createDOM('h2',displayJmeno,{class:'popupHeading'},popup.contentEl);
+                  createDOM('h2',nazev,{class:'popupHeading'},popup.contentEl);  
+                    createDOM('p',cellObject['anotace'],{},popup.contentEl);
                   createDOM('p',cellObject['medailon'],{},popup.contentEl);
                   if(cellObject.hasOwnProperty("lide")){
 
@@ -217,16 +228,10 @@ var makeHarmRequest = function(url,element){
 
                   }
 
-                  // if(history.pushState) {
-                  // 	history.pushState(null, null, '#'+ cellObject['ref']);
-                  // }
-                  // else {
-                  // 	location.hash = '#' + cellObject['ref'];
-                  // }
-
                 };
 
                 item.addEventListener('click',function(e){ e.preventDefault(); pred(this)}.bind(cellObject),false);
+                item.classList.add('clickable');
 
 
 

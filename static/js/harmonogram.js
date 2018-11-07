@@ -220,7 +220,9 @@ var makeHarmRequest = function(urlArr,element){
                   }
                   createDOM('h2',displayJmeno,{class:'popupHeading'},popup.contentEl);
                   createDOM('h2',nazev,{class:'popupHeading'},popup.contentEl);  
+                  if(cellObject['anotace'] !== '0')
                     createDOM('p',cellObject['anotace'],{},popup.contentEl);
+                    if(cellObject['medailon'] !== '0')
                   createDOM('p',cellObject['medailon'],{},popup.contentEl);
                   if(cellObject.hasOwnProperty("lide")){
 

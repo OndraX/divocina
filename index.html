@@ -530,10 +530,10 @@ window.addEventListener('resize',updateParallax);
 		var harm = document.querySelector('#harmonogram-wrap');
 
 // const ROOTURL='/static/';
-const ROOTURL='http://magnusi.tech:8000/';
+const ROOTURL='https://symposion.gjk.cz/';
 // const addr = ROOTURL+'harm.json';
-const addr = ROOTURL+'harmonogram';
-makeHarmRequest(addr,harm);
+const addrs = [ROOTURL+'harmonogram','magnusi.tech:8000/harmonogram','static/backup.json'];
+makeHarmRequest(addrs,harm);
 	</script>
 	</body>
 </html>

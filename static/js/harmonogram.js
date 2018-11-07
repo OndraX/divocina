@@ -1,6 +1,6 @@
 const daysEnum = ['Čtvrtek','Pátek','Sobota'];
 const daysSansLocale = ['ctvrtek','patek','sobota'];
-const classesByDayEnum = [['Aula','P2.1'],['Aula','USV','Sborovna','P2.3','P2.2','P2.1'],['Aula','USV','Sborovna','P2.3','P2.2','P2.1']];
+const classesByDayEnum = [['Aula','Prostor před ředitelnou'],['Aula','USV','Sborovna','P2.3','P2.2','P2.1'],['Aula','USV','Sborovna','P2.3','P2.2','P2.1']];
 const timesByDayEnum = [['18:45','19:00','19:30','20:15','21:00'],
   ['10:00','12:00','13:00','15:00','17:00','20:00'],
   ['10:00','12:00','13:00','15:00','17:00','20:00']];
@@ -96,29 +96,36 @@ var dataToHarm = function(data){
   return finalArr;
 }
 
-var backupUrl = 'static/backup.json';
 
-var makeHarmRequest = function(url,element){
-  const Http = new XMLHttpRequest();
+var makeHarmRequest = function(urlArr,element){
+  var result = null;
+  var ind = 0;
+  while(result !== true && ind < urlArr.length){
+  var url = urlArr[ind];
+  var Http = new XMLHttpRequest();
   Http.open("GET", url);
   Http.setRequestHeader('Content-Type','application/json');
   Http.onreadystatechange=function(e){
     if (Http.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
       if (Http.status == 200) {
         var rawData = JSON.parse(Http.responseText);
+        result == true;
         initHarm(dataToHarm(rawData),element);
       }
       else if (Http.Http == 400) {
-        // alert('There was an error 400');
+        result = false;
       }
       else {
-        if (url !== backupUrl){
-          makeHarmRequest.call(this,backupUrl,element);
-        }
+        // makeHarmRequest.call(this,url,element);
+        result = false;
       }
     }
   }	
   Http.send();
+    ind++;
+    if(ind>urlArr.length)
+      return "FAILURE";
+  }
 }
 
 

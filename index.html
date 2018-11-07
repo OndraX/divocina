@@ -13,7 +13,7 @@
 
 	  <!-- Mobile Specific Metas
 	   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	   <meta name="viewport" content="width=device-width, initial-scale=1">
+	   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
 
 	   <!-- FONT
 		–––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -56,7 +56,7 @@
 		  <canvas id = "cvs" ></canvas>
 		  </div>
 		  <div id="parallax-wrap">
-<div id="wrap" data-depth="0.09">
+<div id="wrap" data-depth="0.05">
 			  <div id="billboard">
 
 				  <div class="center-title__wrap">
@@ -144,7 +144,7 @@
 				<td><a href="mailto:symposion@gjk.cz">symposion@gjk.cz</a></td></tr>
 	</tbody></table>
 	<p class="collides">
-	  Náš&nbsp;kousek&nbsp;městské džungle najdete v Gymnáziu Jana Keplera na adrese Parléřova 2, hned vedle sousoší velikánů Tycha Braha a Jana Keplera, jeho  eponyma. Kdo by chtěl na cestu hledat útočiště před všudypřítomným chaosem v kovových kolosech, můž využít tramvajových linek 22 na Pohořelec nebo 25 na Hládkov.
+	  Náš&nbsp;kousek&nbsp;městské džungle najdete v Gymnáziu Jana Keplera na adrese Parléřova 2, hned vedle sousoší velikánů Tycha Brahe a Jana Keplera, jeho  eponyma. Kdo by chtěl na cestu hledat útočiště před všudypřítomným chaosem v kovových kolosech, může využít tramvajových linek 22 na Pohořelec nebo 25 na Hládkov.
 
 	</p>
 
@@ -485,8 +485,29 @@ resizeCollisionHook(data.polys);
 						scalarY: 3,
 						inputElement: parallaxWrap
 					};
-		var parallaxInstance = new Parallax(container, settings);
 		var parallaxForBody = new Parallax(parallaxWrap, settings);
+		var parallaxInstance = new Parallax(container, settings);
+	function updateParallax() {
+		
+		var viewport_width = $(window).width();
+		var layers = my_parallax.layers;
+			
+			 if(viewport_width < 768) {
+				 window.killParallax = window.setInterval(function(){
+					 parallaxInstance.disable();
+					 parallaxForBody.disable();
+				 },500);
+			 }
+			 else {
+				 if(window.killParallax){
+					 window.clearInterval(window.killParallax));
+				 }
+				 parallaxInstance.enable(500);
+				 parallaxForBody.enable(500);
+			 }
+		 }
+		 my_parallax.updateLayers();
+	  }
 	</script>
 	<script src="static/js/vex.combined.min.js"></script>
 	<script src="static/js/harmonogram.js"></script>

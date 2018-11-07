@@ -27,7 +27,7 @@ html,#billboard,#img-container {
 
 #img-container {
 	position: absolute;
-	opacity: 0.8;
+	opacity: 0.55;
 	position: fixed;
 	overflow: hidden;
 	/* overflow: hidden; */

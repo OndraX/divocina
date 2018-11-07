@@ -99,12 +99,15 @@ var dataToHarm = function(data){
 
 var makeHarmRequest = function(urlArr,element){
   var result = null;
-  var ind = 0;
-  while(result !== true && ind < urlArr.length){
-  var url = urlArr[ind];
+  if(urlArr == null || urlArr == [])
+    return -1;
+
+    url = urlArr.shift();
+  console.log(url);
   var Http = new XMLHttpRequest();
   Http.open("GET", url);
   Http.setRequestHeader('Content-Type','application/json');
+    console.log(url);
   Http.onreadystatechange=function(e){
     if (Http.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
       if (Http.status == 200) {
@@ -113,19 +116,18 @@ var makeHarmRequest = function(urlArr,element){
         initHarm(dataToHarm(rawData),element);
       }
       else if (Http.Http == 400) {
-        result = false;
+        if(ind<urlArr.length)
+          makeHarmRequest(urlArr,element);
+        result = false
       }
       else {
-        // makeHarmRequest.call(this,url,element);
+        if(ind<urlArr.length)
+          makeHarmRequest(urlArr,element,ind+1);
         result = false;
       }
     }
   }	
   Http.send();
-    ind++;
-    if(ind>urlArr.length)
-      return "FAILURE";
-  }
 }
 
 
@@ -156,7 +158,6 @@ var makeHarmRequest = function(urlArr,element){
             listByHour.sort(function(a,b){
               return (classesByDayEnum[dayNum].indexOf(a.trida) - classesByDayEnum[dayNum].indexOf(b.trida));
             });
-            console.log("LBH",listByHour);
             var prev = null;
             for(hour in listByHour){
               var cellObject = listByHour[hour];

@@ -504,9 +504,6 @@ resizeCollisionHook(data.polys);
 		var parallaxInstance = new Parallax(container, settings);
 function updateParallax() {
 
-	var viewport_width = $(window).width();
-	var layers = my_parallax.layers;
-
 	if(viewport_width < 768) {
 		window.killParallax = window.setInterval(function(){
 			parallaxInstance.disable();

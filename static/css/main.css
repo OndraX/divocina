@@ -192,7 +192,7 @@ div.center-title__wrap {
 	font-family: SkyhookMono,'Skyhook Mono', 'Lato', 'Helvetica Neue', sans-serif;
 }
 h2.center-title {
-	font-size: 6.4rem;
+	font-size: 3.4rem;
 	padding: .4rem;
 	padding-right: .7rem;
 	line-height: .7em;
@@ -213,7 +213,8 @@ h2.center-title {
 }
 p.center-subtitle {
 	display: inline-block;
-	font-size: 2.6rem;
+	font-size: 1.7rem;
+	margin: 0;
 	font-weight: 400;
 	margin: 0;
 }
@@ -284,26 +285,36 @@ padding: 0;}
 	width: 100%;
 }
 /*
+ * VEX POPUPS
+ */
+.vex{
+		font-size: 1.5rem;
+		}
+		.vex h2{
+			font-size: 2.4rem;
+		}
+.vex.vex-theme-wireframe{
+	padding: 160px 0;
+	overflow: hidden;
+	word-break: break-all;
+}
+
+/*
  * RESPONSIVE
  */
 /* Larger than mobile */
 @media (min-width: 400px) {}
 
 /* Larger than phablet (also point when grid becomes active) */
-@media (min-width: 550px) {
-
-	.container {
-		width: 90%;
-	}
-	article {
-		padding: 0 .6rem;
-
-
-	}
-}
 
 /* Larger than tablet */
 @media (min-width: 750px) {
+	p.center-subtitle {
+		font-size: 2.4rem;
+	}
+	h2.center-title {
+		font-size: 6.4rem;
+	}
 	nav li {
 		display: inline-block;
 	}
@@ -339,7 +350,7 @@ padding: 0;}
 		font-size: 8.4rem;
 	}
 	p.center-subtitle {
-		font-size: 3.2rem;
+		font-size: 1.7rem;
 	}
 	nav li {
 		font-size: 2.8rem;
@@ -432,7 +443,6 @@ padding: 0;}
 	width: 100%;
 	height: 100%;
 	z-index: 10;
-	/* pointer-events: none; */
 }
 #img-container{
 	position: fixed;
@@ -559,10 +569,33 @@ margin: 0;
 padding-top: 0.4rem !important;
 padding: 0;
 }
+/*
+ * VEX POPUPS
+ */
+.vex{
+font-size: 1.9rem;
 }
+.vex h2{
+font-size: 2.8rem;	
+}
+.vex.vex-theme-wireframe{
+	padding: 0;
+	overflow: auto;
+	word-break: none;
+}
+}
+
 /*************************
  * TABLE ON SMALL SCREEN *
  *************************/
+.table-harm{
+	font-size: 1.2rem;
+	line-break: break-all !important;
+}
+.table-harm td{
+	max-width: 60%;
+	overflow: hidden;
+}
 @media screen and (max-width: 900px),
 (min-device-width:354px) and (max-device-width:1124px) {
 
@@ -597,6 +630,7 @@ padding: 0;
 		overflow: hidden;
 		margin-right: 0 !important;
 		width: 100%;
+		padding-top: 2rem;
 	}
 	.table-harm td:first-of-type {
 		border-bottom: 1px solid #ddd;
@@ -651,3 +685,24 @@ padding: 0;
 }
 
 
+@media (min-width: 550px) {
+
+	.container {
+		width: 90%;
+	}
+	article {
+		padding: 0 .6rem;
+
+
+	}
+	h2.center-title {
+		font-size: 5.4rem;
+	}
+	p.center-subtitle {
+		font-size: 3.4rem;
+	}
+	.table-harm td {
+		padding-top: 0rem;
+	}
+
+}

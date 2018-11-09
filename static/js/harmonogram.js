@@ -111,6 +111,7 @@ var makeHarmRequest = function(urlArr,element){
   Http.onreadystatechange=function(e){
     if (Http.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
       if (Http.status == 200) {
+        console.log(Http.responseText);
         var rawData = JSON.parse(Http.responseText);
         result == true;
         initHarm(dataToHarm(rawData),element);
@@ -218,8 +219,10 @@ var makeHarmRequest = function(urlArr,element){
                       displayJmeno = cellObject['prednasejici-tituly'];
                     }
                   }
-                  createDOM('h2',displayJmeno,{class:'popupHeading'},popup.contentEl);
-                  createDOM('h2',nazev,{class:'popupHeading'},popup.contentEl);  
+                  if(displayJmeno !=='0')
+                    createDOM('h2',displayJmeno,{class:'popupHeading'},popup.contentEl);
+                  if(nazev !=='0')
+                    createDOM('h2',nazev,{class:'popupHeading'},popup.contentEl);  
                   if(cellObject['anotace'] !== '0')
                     createDOM('p',cellObject['anotace'],{},popup.contentEl);
                     if(cellObject['medailon'] !== '0')

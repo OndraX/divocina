@@ -103,15 +103,15 @@ var makeHarmRequest = function(urlArr,element){
     return -1;
 
     url = urlArr.shift();
-  console.log(url);
+  // console.log(url);
   var Http = new XMLHttpRequest();
   Http.open("GET", url);
   Http.setRequestHeader('Content-Type','application/json');
-    console.log(url);
+    // console.log(url);
   Http.onreadystatechange=function(e){
     if (Http.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
       if (Http.status == 200) {
-        console.log(Http.responseText);
+        // console.log(Http.responseText);
         var rawData = JSON.parse(Http.responseText);
         result == true;
         initHarm(dataToHarm(rawData),element);
@@ -251,7 +251,7 @@ var makeHarmRequest = function(urlArr,element){
               }else{
                 createDOM('span',text,{'class':'textClass default'},item); 
               }
-              console.log(item,text,"OIT");
+              // console.log(item,text,"OIT");
                               if(text.length < 56)
                                   item.classList.add('table-content-short');
               // END create prednaska link

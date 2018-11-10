@@ -3,7 +3,7 @@ const daysSansLocale = ['ctvrtek','patek','sobota'];
 const classesByDayEnum = [['Aula','Prostor před ředitelnou'],['Aula','USV','Sborovna','P2.3','P2.2','P2.1'],['Aula','USV','Sborovna','P2.3','P2.2','P2.1']];
 const timesByDayEnum = [['18:45','19:00','19:30','20:15','21:00'],
   ['10:00','12:00','13:00','15:00','17:00','20:00'],
-  ['10:00','12:00','13:00','15:00','17:00','20:00']];
+  ['10:00','12:00','13:00','15:00','17:00']];
 vex.defaultOptions.className = 'vex-theme-wireframe';
 function createDOM(obj,text,properties,parent){
 
@@ -220,14 +220,14 @@ var makeHarmRequest = function(urlArr,element){
                       displayJmeno = cellObject['prednasejici-tituly'];
                     }
                   }
-                  if(displayJmeno !=='0')
+                  if(displayJmeno.length>4)
                     createDOM('h2',displayJmeno,{class:'popupHeading'},popup.contentEl);
-                  if(nazev !=='0')
+                  if(nazev.length>4)
                     createDOM('h2',nazev,{class:'popupHeading'},popup.contentEl);  
-                  if(cellObject['anotace'] !== '0')
+                  if(cellObject['anotace'].length>4)
                     createDOM('p',cellObject['anotace'],{},popup.contentEl);
-                    if(cellObject['medailon'] !== '0')
-                  createDOM('p',cellObject['medailon'],{},popup.contentEl);
+                    if(cellObject['medailon'].length>4)
+                  createDOM('em',cellObject['medailon'],{},createDOM('p','',{},popup.contentEl));
                   if(cellObject.hasOwnProperty("lide")){
 
                     cellObject["lide"].forEach(function(e){ //TODO: check if not 0
@@ -252,7 +252,7 @@ var makeHarmRequest = function(urlArr,element){
                 createDOM('span',text,{'class':'textClass default'},item); 
               }
               // console.log(item,text,"OIT");
-                              if(text.length < 56)
+                              if(text.length < 45)
                                   item.classList.add('table-content-short');
               // END create prednaska link
             }

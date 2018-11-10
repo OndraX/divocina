@@ -191,6 +191,7 @@ var makeHarmRequest = function(urlArr,element){
               const doLinks = true;
 
               if(doLinks){
+
                 var link = createDOM('span',text,{'class':'default'},item);
                 // item.classList.add('pointable');
                 var pred = function(cellObject){
@@ -236,8 +237,7 @@ var makeHarmRequest = function(urlArr,element){
                       createDOM('h2',(typeof e['prednasejici-tituly'] !== 'undefined')?e['prednasejici-tituly']:e['prednasejici'],{class:'popupHeading'},popup.contentEl);
                       if(typeof e['medailon'] !== 'undefined'){createDOM('p',e['medailon'],{},popup.contentEl);
                       }
-
-                    })
+                    });
 
                   }
 
@@ -251,6 +251,9 @@ var makeHarmRequest = function(urlArr,element){
               }else{
                 createDOM('span',text,{'class':'textClass default'},item); 
               }
+              console.log(item,text,"OIT");
+                              if(text.length < 56)
+                                  item.classList.add('table-content-short');
               // END create prednaska link
             }
           }

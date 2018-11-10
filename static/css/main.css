@@ -43,6 +43,10 @@ html,#billboard,#img-container {
 	padding: 0;
 }
 
+.container{
+	padding: 0;
+}
+
 article:first-of-type{
 	margin-top: 6rem;
 }
@@ -92,14 +96,14 @@ nav a:hover {
 
 p, li {
 	margin: 0px .6rem;
-	margin-bottom: .6rem;
+	margin-bottom: .1rem;
 }
 
 h3,h4 {
 	font-family: SkyhookMono,'Skyhook Mono', 'Lato', 'Helvetica Neue', sans-serif;
 	letter-spacing: -1px;
 	font-weight: 800;
-	font-size: 1.3em;
+	font-size: 2.3rem;
 	padding: 1rem 2rem;
 	text-shadow: 0px 0px 4px white;
 	cursor: default;
@@ -108,7 +112,7 @@ h3,h4 {
 	padding: 1rem 2rem;
 }
 h4 {
-	font-size: 1.2em;
+	font-size: 2.0rem;
 }
 /*
  * MISC
@@ -285,10 +289,10 @@ h2,h3,h4,.collides,nav li,h2.center-title {
  * VEX POPUPS
  */
 .vex{
-		font-size: 1.5rem;
+		font-size: 1.4rem;
 		}
 		.vex h2{
-			font-size: 2.4rem;
+			font-size: 2.3rem;
 		}
 .vex.vex-theme-wireframe{
 	padding: 160px 0;
@@ -306,6 +310,9 @@ h2,h3,h4,.collides,nav li,h2.center-title {
 
 /* Larger than tablet */
 @media (min-width: 750px) {
+	body{
+		font-size: 2rem;
+	}
 	p.center-subtitle {
 		font-size: 2.4rem;
 	}
@@ -355,13 +362,14 @@ h2,h3,h4,.collides,nav li,h2.center-title {
 	.collides,h3,h4 {
 		color: black;
 		margin: 0;
-		margin-bottom: 7px;
+		margin-bottom: .1rem;
 		/* background: red; */
 		pointer-events: all;
 	}
 	p.collides, li.collides {
+		font-size: 1.4rem;
 		margin: 0px .6rem;
-		margin-bottom: .6rem;
+		margin-bottom: .1rem;
 	}
 	nav li {
 		pointer-events: all;
@@ -372,7 +380,7 @@ h2,h3,h4,.collides,nav li,h2.center-title {
 	nav li:hover {
 		color: white;
 		background: #aaaaaa;
-		background: rgba(255,255,255,0.6);
+	background: rgba(255,255,255,0.6);
 	}
 
 	nav li:active {
@@ -388,9 +396,6 @@ h2,h3,h4,.collides,nav li,h2.center-title {
 
 		background: rgba(255,255,255,0.9);
 	}
-	*{
-		margin:0;
-	padding: 0;}
 }
 
 /* Larger than desktop */
@@ -402,7 +407,7 @@ h2,h3,h4,.collides,nav li,h2.center-title {
 	.collides,h3,h4 {
 		color: black;
 		padding: 1rem 2rem;
-		margin-bottom: 7px;
+		margin-bottom: .3rem;
 		/* background: red; */
 		pointer-events: all;
 	}
@@ -512,6 +517,7 @@ a {
 	border-collapse: separate;
 }
 .table-harm td,  .table-harm__subheading{
+	max-width: 100vw;
 	background: white;
 	background: rgba(255,255,255,0.9);
 }
@@ -555,14 +561,18 @@ a {
 	transparent 4.236px
 	), rgba(255,255,255,0.6);
 }
+.table-content-short{
+	padding-top: 0.6rem !important;
+}
 
 @media (max-width: 750px){
 
 	h3{
 		/* overflow-x: scroll; */
-		margin-bottom: 1rem;
+		margin-bottom: 0.2rem;
 	}
 .table-harm__subheading{
+	font-size: 1.9rem !important;
 margin: 0;
 padding-top: 0.4rem !important;
 padding: 0;
@@ -632,6 +642,7 @@ font-size: 2.8rem;
 	}
 	.table-harm td:first-of-type {
 		border-bottom: 1px solid #ddd;
+		padding-top: 0.6rem;
 	}
 	.table-harm td:before {
 		content: 'Popis:';
@@ -702,5 +713,14 @@ font-size: 2.8rem;
 	.table-harm td {
 		padding-top: .6rem;
 	}
+	h3{
+		font-size: 2.8rem;
+	}
+	h4{
+		font-size: 2.4rem;
+	}
 
+}
+.table-harm__subheading{
+	font-size: 2.6rem;
 }

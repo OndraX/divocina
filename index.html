@@ -158,10 +158,10 @@
 				</picture></td>
 				<td><a href="mailto:symposion@gjk.cz">symposion@gjk.cz</a></td></tr>
 	</tbody></table>
-	<p class="collides">
+	<div style="margin: 0.2rem;" class="collides">
 	  Náš&nbsp;kousek&nbsp;městské džungle najdete v Gymnáziu Jana Keplera na adrese Parléřova 2, hned vedle sousoší velikánů Tycha Brahe a Jana Keplera, jeho  eponyma. Kdo by chtěl na cestu hledat útočiště před všudypřítomným chaosem v kovových kolosech, může využít tramvajových linek 22 na Pohořelec nebo 25 na Hládkov.
 
-	</p>
+	</div>
 
 					  <h4>Mapa</h4>
 					  <div id="map-wrap">
@@ -497,14 +497,14 @@ resizeCollisionHook(data.polys);
 						frictionY: 0.5,
 						invertX: true,
 						invertY: true,
-						scalarY: 3,
+						scalarY: 4,
 						inputElement: parallaxWrap
 					};
 		var parallaxForBody = new Parallax(parallaxWrap, settings);
 		var parallaxInstance = new Parallax(container, settings);
 function updateParallax() {
 
-	if(viewport_width < 768) {
+	if(window.innerWidth< 768) {
 		window.killParallax = window.setInterval(function(){
 			parallaxInstance.disable();
 			parallaxForBody.disable();

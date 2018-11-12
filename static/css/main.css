@@ -289,14 +289,15 @@ h2,h3,h4,.collides,nav li,h2.center-title {
  * VEX POPUPS
  */
 .vex{
-		font-size: 1.4rem;
-		}
-		.vex h2{
-			font-size: 2.3rem;
-		}
+	font-size: 1.4rem;
+}
+.vex h2{
+	font-size: 2.3rem;
+}
 .vex.vex-theme-wireframe{
 	padding: 160px 0;
 	overflow: hidden;
+	overflow-y: scroll;
 	word-break: word;
 }
 
@@ -308,6 +309,11 @@ h2,h3,h4,.collides,nav li,h2.center-title {
 
 /* Larger than phablet (also point when grid becomes active) */
 
+@media (min-width: 550px) {
+	.vex.vex-theme-wireframe{
+		padding: 160px 0;
+	}
+}
 /* Larger than tablet */
 @media (min-width: 750px) {
 	body{
@@ -380,7 +386,7 @@ h2,h3,h4,.collides,nav li,h2.center-title {
 	nav li:hover {
 		color: white;
 		background: #aaaaaa;
-	background: rgba(255,255,255,0.6);
+		background: rgba(255,255,255,0.6);
 	}
 
 	nav li:active {
@@ -502,8 +508,8 @@ a {
 .table-harm{
 	table-layout:fixed;
 	-webkit-hyphens: auto;
-	  -ms-hyphens: auto;
-	    hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
 	/* word-break: break-word; */
 	float: right;
 	clear: right;
@@ -564,27 +570,33 @@ a {
 .table-content-short{
 	padding-top: 0.6rem !important;
 }
+/* TEMP CORRECTIONS FOR WEIRD BUGS ON DIFFERENT DEVICED 
+ * TODO: integrate these into natural responsive hierarchy */
 
+@media (max-width: 550px){
+}
+
+}
 @media (max-width: 750px){
 
 	h3{
 		/* overflow-x: scroll; */
 		margin-bottom: 0.2rem;
 	}
-.table-harm__subheading{
-	font-size: 1.9rem !important;
-margin: 0;
-padding-top: 0.4rem !important;
-padding: 0;
-}
-/*
- * VEX POPUPS
- */
+	.table-harm__subheading{
+		font-size: 1.9rem !important;
+		margin: 0;
+		padding-top: 0.4rem !important;
+		padding: 0;
+	}
+	/*
+	 * VEX POPUPS
+	 */
 .vex{
-font-size: 1.9rem;
+	font-size: 1.2rem;
 }
 .vex h2{
-font-size: 2.8rem;	
+	font-size: 1.8rem;	
 }
 .vex.vex-theme-wireframe{
 	padding: 0;
@@ -603,6 +615,7 @@ font-size: 2.8rem;
 .table-harm td{
 	max-width: 60%;
 	overflow: hidden;
+	box-sizing: border-box;
 }
 @media screen and (max-width: 900px),
 (min-device-width:354px) and (max-device-width:1124px) {
@@ -639,6 +652,7 @@ font-size: 2.8rem;
 		margin-right: 0 !important;
 		width: 100%;
 		padding-top: 2rem;
+		padding-left: 6rem;
 	}
 	.table-harm td:first-of-type {
 		border-bottom: 1px solid #ddd;
@@ -669,10 +683,16 @@ font-size: 2.8rem;
 		content: "Sborovna ";
 	}
 	.table-harm td:nth-of-type(5):before {
-		content: "P2.2 ";
+		content: "P2.3 ";
 	}
 	.table-harm td:nth-of-type(6):before {
-		content: "P2.3 ";
+		content: "P2.2 ";
+	}
+	.table-harm td:nth-of-type(7):before {
+		content: "P2.1";
+	}
+	.table-harm td:nth-of-type(8):before {
+		content: "P1.2 ";
 	}
 
 	.table-harm td.noBefore:before{

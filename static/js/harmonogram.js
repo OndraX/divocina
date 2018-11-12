@@ -1,6 +1,6 @@
 const daysEnum = ['Čtvrtek','Pátek','Sobota'];
 const daysSansLocale = ['ctvrtek','patek','sobota'];
-const classesByDayEnum = [['Aula','Prostor před ředitelnou'],['Aula','USV','Sborovna','P2.3','P2.2','P2.1'],['Aula','USV','Sborovna','P2.3','P2.2','P2.1']];
+const classesByDayEnum = [['Aula','Prostor před ředitelnou'],['Aula','USV','Sborovna','P2.3','P2.2','P2.1','P1.2'],['Aula','USV','Sborovna','P2.3','P2.2','P2.1','P1.2']];
 const timesByDayEnum = [['18:45','19:00','19:30','20:15','21:00'],
   ['10:00','12:00','13:00','15:00','17:00','20:00'],
   ['10:00','12:00','13:00','15:00','17:00']];

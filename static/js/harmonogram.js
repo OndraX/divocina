@@ -62,10 +62,10 @@ function build(data,parent){
 
 var dataToHarm = function(data){
 var hiddenElement = document.createElement('a');
-hiddenElement.href = 'data:attachment/text,' + encodeURI(JSON.stringify(data));
-hiddenElement.target = '_blank';
-hiddenElement.download = 'harm.json';
-hiddenElement.click();
+// hiddenElement.href = 'data:attachment/text,' + encodeURI(JSON.stringify(data));
+// hiddenElement.target = '_blank';
+// hiddenElement.download = 'harm.json';
+// hiddenElement.click();
 
   arrsByDay = [],finalArr = [];
   daysSansLocale.forEach(function(day,ind){
@@ -125,8 +125,7 @@ var makeHarmRequest = function(urlArr,element){
         result = false
       }
       else {
-        if(urlArr.length)
-          makeHarmRequest(urlArr,element,ind+1);
+          makeHarmRequest(urlArr,element);
         result = false;
       }
     }

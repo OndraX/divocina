@@ -295,7 +295,6 @@ h2,h3,h4,.collides,nav li,h2.center-title {
 	font-size: 2.3rem;
 }
 .vex.vex-theme-wireframe{
-	padding: 160px 0;
 	overflow: hidden;
 	overflow-y: scroll;
 	word-break: word;
@@ -589,6 +588,10 @@ a {
 		padding-top: 0.4rem !important;
 		padding: 0;
 	}
+	article{
+		border-bottom: none;
+	}
+	
 	/*
 	 * VEX POPUPS
 	 */

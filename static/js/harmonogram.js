@@ -61,11 +61,11 @@ function build(data,parent){
 }
 
 var dataToHarm = function(data){
-// var hiddenElement = document.createElement('a');
-// hiddenElement.href = 'data:attachment/text,' + encodeURI(JSON.stringify(data));
-// hiddenElement.target = '_blank';
-// hiddenElement.download = 'harm.json';
-// hiddenElement.click();
+var hiddenElement = document.createElement('a');
+hiddenElement.href = 'data:attachment/text,' + encodeURI(JSON.stringify(data));
+hiddenElement.target = '_blank';
+hiddenElement.download = 'harm.json';
+hiddenElement.click();
 
   arrsByDay = [],finalArr = [];
   daysSansLocale.forEach(function(day,ind){
@@ -103,16 +103,19 @@ var makeHarmRequest = function(urlArr,element){
     return -1;
 
     url = urlArr.shift();
-  // console.log(url);
   var Http = new XMLHttpRequest();
   Http.open("GET", url);
   Http.setRequestHeader('Content-Type','application/json');
-    // console.log(url);
   Http.onreadystatechange=function(e){
     if (Http.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
       if (Http.status == 200) {
-        // console.log(Http.responseText);
-        var rawData = JSON.parse(Http.responseText);
+        try{
+          var rawData = JSON.parse(Http.responseText);
+        } catch(e){
+          alert("Exception.");
+          console.log(e);
+            makeHarmRequest(urlArr,element);
+        }
         result == true;
         initHarm(dataToHarm(rawData),element);
       }
@@ -122,7 +125,7 @@ var makeHarmRequest = function(urlArr,element){
         result = false
       }
       else {
-        if(ind<urlArr.length)
+        if(urlArr.length)
           makeHarmRequest(urlArr,element,ind+1);
         result = false;
       }
@@ -154,29 +157,58 @@ var makeHarmRequest = function(urlArr,element){
         var row = createDOM('tr','',{'class':'trClass','id':'trId'},table);
         createDOM('span',hourRow,{},createDOM('td','',{'class':'tdClass first-coll'},row));
         if(typeof data[dayNum] !== 'undefined'){
-          var listByHour = data[dayNum].list[hourNum];
-          if(typeof listByHour !== 'undefined'){
-            listByHour.sort(function(a,b){
-              return (classesByDayEnum[dayNum].indexOf(a.trida) - classesByDayEnum[dayNum].indexOf(b.trida));
-            });
+          var tempList = data[dayNum].list[hourNum],
+              listByClassroom = [];
+          // listByClassroom = data[dayNum].list[hourNum];
+          tempList.forEach(function(objInList){
+            listByClassroom[objInList.trida] = objInList;
+          });
+          if(typeof listByClassroom !== 'undefined'){
+            
+            // listByClassroom.sort(function(a,b){
+            //   return (classesByDayEnum[dayNum].indexOf(a.trida) - classesByDayEnum[dayNum].indexOf(b.trida));
+            // });
             var prev = null;
-            for(hour in listByHour){
-              var cellObject = listByHour[hour];
-              var params = {'class':'tdClass','colspan':0};
+            for(var i = 0,l=classesByDayEnum[dayNum].length; i<l; i++){
+              var ind = classesByDayEnum[dayNum][i];
+              var cellObject = listByClassroom[ind];
+              if(typeof cellObject == 'undefined'){
+                break;
+              }
+              var params = {'class':'tdClass','colspan':cellObject.colspan | 1};
               var same = false;
               if(prev !== null){
+                if(typeof cellObject == 'undefined'){
+                  same = true;
+                }else{
                 if(cellObject.prednasejici == prev.prednasejici)
                   same = true;
-                
+                }
               }
-              if(cellObject.prednasejici == '0' || same){
-                if(prev !== null){
-                  prev.setAttribute('colspan',Math.min(listByHour.length,parseInt(prev.getAttribute('colspan'))+1 | 1));
-                }else{
-                  prev = createDOM('td','',{'class':'textClass default'},row); 
-                  }
-                continue;
+              if(typeof cellObject == 'undefined'){
+                 createDOM('td','',{'class':'empty-cell pad-cell'},row); 
               }
+              //     if(prev !== null){
+              //       prev.setAttribute('colspan',Math.min(listByClassroom.length,parseInt(prev.getAttribute('colspan'))+1 | 1));
+              //     }else{
+              //       prev = createDOM('td','',{'class':'textClass default'},row); 
+              //     }
+              //     continue;
+              // }else{
+              //
+              //   if(cellObject.prednasejici == '0' || same){
+              //     if(prev !== null){
+              //       prev.setAttribute('colspan',Math.min(listByClassroom.length,parseInt(prev.getAttribute('colspan'))+1 | 1));
+              //     }else{
+              //       prev = createDOM('td','',{'class':'textClass default'},row); 
+              //     }
+              //     continue;
+              //   }
+              // }
+              if(cellObject.prednasejici == '0'){
+                break;
+              }
+                console.log("CO:",cellObject);
               var text = '<strong>'+clipStringToLength(cellObject.prednasejici, 120, 20).replace(/^\s+|\s+$/g,'');
                 if(cellObject.jmeno.length > 4){
                 text+=':</strong> '+ clipStringToLength(cellObject.jmeno,34,6).replace(/^\s+|\s+$/g,'');
@@ -251,7 +283,6 @@ var makeHarmRequest = function(urlArr,element){
               }else{
                 createDOM('span',text,{'class':'textClass default'},item); 
               }
-              // console.log(item,text,"OIT");
                               if(text.length < 45)
                                   item.classList.add('table-content-short');
               // END create prednaska link

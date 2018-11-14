@@ -61,7 +61,7 @@ function build(data,parent){
 }
 
 var dataToHarm = function(data){
-var hiddenElement = document.createElement('a');
+// var hiddenElement = document.createElement('a');
 // hiddenElement.href = 'data:attachment/text,' + encodeURI(JSON.stringify(data));
 // hiddenElement.target = '_blank';
 // hiddenElement.download = 'harm.json';
@@ -112,7 +112,6 @@ var makeHarmRequest = function(urlArr,element){
         try{
           var rawData = JSON.parse(Http.responseText);
         } catch(e){
-          alert("Exception.");
           console.log(e);
             makeHarmRequest(urlArr,element);
         }
@@ -208,9 +207,9 @@ var makeHarmRequest = function(urlArr,element){
                 break;
               }
                 console.log("CO:",cellObject);
-              var text = '<strong>'+clipStringToLength(cellObject.prednasejici, 120, 20).replace(/^\s+|\s+$/g,'');
+              var text = '<strong>'+clipStringToLength(cellObject.prednasejici, 130, 28).replace(/^\s+|\s+$/g,'');
                 if(cellObject.jmeno.length > 4){
-                text+=':</strong> '+ clipStringToLength(cellObject.jmeno,34,6).replace(/^\s+|\s+$/g,'');
+                text+=':</strong> '+ clipStringToLength(cellObject.jmeno,41,8).replace(/^\s+|\s+$/g,'');
                 }
               else{
                 text+='</strong>';

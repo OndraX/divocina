@@ -141,8 +141,9 @@ var makeHarmRequest = function(urlArr,element){
     //BEGIN
     var tableCount = 0;
     daysEnum.forEach(function(day,dayNum){
-      createDOM('h4',day,{class:'table-harm table-harm__subheading',},harmonogram);
-      var table = createDOM('table','',{'class':'table-harm u-full-width u-max-full-width standard','id':('table_' + String(tableCount++))},harmonogram);
+      var tableContainer = createDOM('div','',{'class':'make-page'},harmonogram);
+      createDOM('h4',day,{class:'table-harm table-harm__subheading',},tableContainer);
+      var table = createDOM('table','',{'class':'table-harm u-full-width u-max-full-width standard','id':('table_' + String(tableCount++))},tableContainer);
       var th = createDOM('tr','',{'class':'thClass'},createDOM('thead','',{'class':'theadClass','id':'tableHeadId'},table));
 
       createDOM('td','',{'class':'tableHeaderDataClass first-row first-coll'},th);
@@ -209,7 +210,7 @@ var makeHarmRequest = function(urlArr,element){
                 console.log("CO:",cellObject);
               var text = '<strong>'+clipStringToLength(cellObject.prednasejici, 130, 28).replace(/^\s+|\s+$/g,'');
                 if(cellObject.jmeno.length > 4){
-                text+=':</strong> '+ clipStringToLength(cellObject.jmeno,41,8).replace(/^\s+|\s+$/g,'');
+                text+='</strong>'; //+ clipStringToLength(cellObject.jmeno,51,13).replace(/^\s+|\s+$/g,'');
                 }
               else{
                 text+='</strong>';
